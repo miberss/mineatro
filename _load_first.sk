@@ -1,0 +1,87 @@
+import:
+	ch.njol.skript.localization.Language
+	ch.njol.skript.command.EffectCommandEvent
+	org.bukkit.command.CommandSender
+
+options:
+	cm: %{-mib_lib::color::main}% 
+	ca: %{-mib_lib::color::accent}%
+	ci: %{-mib_lib::color::info}%
+	cw: %{-mib_lib::color::warning}%
+	ce: %{-mib_lib::color::error}%
+	cs: %{-mib_lib::color::success}%
+	prefix: [⏹]
+
+on tab complete of "skript" and "sk":
+	set {_t::*} to tab completions where [input does not contain "\.git"]
+	set tab completions for position 2 to {_t::*}
+
+function change_name(id: string, value: string):
+	Language.localizedLanguage.put({_id}, {_value})
+
+on skript start:
+	set {-mib_lib::color::main} to "<#FEFEE0>"
+	set {-mib_lib::color::accent} to "<#C0FDFB>"
+	set {-mib_lib::color::info} to "<#95B8D1>"
+	set {-mib_lib::color::warning} to "<#FFA400>"
+	set {-mib_lib::color::error} to "<#F9627D>"
+	set {-mib_lib::color::success} to "<#4FB477>"
+	change_name("skript.prefix", "{@ci}{@prefix}{@cm} <reset>")
+
+	change_name("skript command.reload.warning line info", "<reset>{@ce}<i>LINE %%s⏵{@ca} (%%s)<reset>\n")
+	change_name("skript command.reload.error line info", "<reset>{@ce}<i>LINE %%s⏵{@ca} (%%s)<reset>\n")
+	change_name("skript command.reload.line details", "{@ci}    LINE: {@ca}%%s{@cm} {@cm}")
+
+	change_name("skript command.reload.reloading", "{@cm}⏳ Reloading {@ci}%%s{@cm}...")
+	change_name("skript command.reload.reloaded", "{@ca}✔ Successfully reloaded {@ci}%%s{@cm}. {@ci}[{@ca}%%2$sms{@ci}]")
+	change_name("skript command.reload.script", "{@cm}""{@ci}%%s{@cm}""")
+	change_name("skript command.reload.player reload", "{@ca}%%s {@cm}is reloading {@ci}%%s{@cm}...")
+	change_name("skript command.reload.error", "{@ce}✘ Encountered {@ci}%%2$s {@ce}error while reloading {@ci}%%1$s{@ce}! {@ci}[{@ca}%%3$sms{@ci}]")
+	change_name("skript command.reload.script disabled", "{@ci}⚠ %%s{@cm} is currently disabled. Use {@ci}/{@cm}skript {@ci}enable {@ce}%%s{@cm} to enable it.")
+	change_name("skript command.reload.warning details", "{@ca}⚠    %%s{@cm}")
+	change_name("skript command.reload.error details", "{@ce}    %%s{@cm}")
+	change_name("skript command.reload.other details", "{@cm}    %%s{@cm}")
+	
+	change_name("skript reload.config, aliases and scripts", "{@ca}the config, aliases and all scripts{@cm}")
+	change_name("skript reload.scripts", "{@ca}all scripts{@cm}")
+	change_name("skript reload.main config", "{@ca}the main configuration{@cm}")
+	change_name("skript reload.aliases", "{@ca}the aliases{@cm}")
+	change_name("skript reload.script", "{@ci}""%%s""{@cm}")
+	change_name("skript reload.scripts in folder", "{@cm}all scripts in {@ci}%%s{@cm}")
+	change_name("skript reload.x scripts in folder success", "{@ci}{@ca}%%2$s {@ci}script{@cm} in {@ci}%%1$s{@cm}")
+	change_name("skript reload.x scripts in folder error", "{@ci}{@ce}%%2$s {@ci}script{@cm} in {@ci}%%1$s{@cm}")
+	change_name("skript reload.empty folder", "{@ci}%%s{@cm} contains no enabled scripts.")
+
+	change_name("skript command.enable.all.enabling", "{@cm}⚡ Enabling all disabled scripts...{@cm}/")
+	change_name("skript command.enable.all.enabled", "{@ca}✔ Successfully enabled & parsed all previously disabled scripts.{@cm}")
+	change_name("skript command.enable.all.error", "{@ce}✘ Encountered {@ci}%%s {@ce}error while parsing disabled scripts!{@cm}")
+	change_name("skript command.enable.all.io error", "{@ce}⚠ Could not load one or more scripts: {@ci}%%s")
+
+	change_name("skript command.enable.single.already enabled", "{@ci}%%s{@cm} is already enabled! Use {@ci}/{@cm}skript {@ci}reload {@ce}%%s{@cm} to reload it.")
+	change_name("skript command.enable.single.enabling", "{@cm}⚡ Enabling {@ci}%%s{@cm}...")
+	change_name("skript command.enable.single.enabled", "{@ca}✔ Successfully enabled & parsed {@ci}%%s{@cm}.")
+	change_name("skript command.enable.single.error", "{@ce}✘ Encountered {@ci}%%2$s {@ce}error while parsing {@ci}%%1$s{@ce}!")
+	change_name("skript command.enable.single.io error", "{@ce}⚠ Could not enable {@ci}%%s{@ce}: {@ci}%%s")
+
+	change_name("skript command.enable.folder.empty", "{@ci}%%s{@cm} does not contain any disabled scripts.")
+	change_name("skript command.enable.folder.enabling", "{@cm}⚡ Enabling {@ci}%%2$s {@cm}script(s) in {@ci}%%1$s{@cm}...")
+	change_name("skript command.enable.folder.enabled", "{@ca}✔ Enabled {@ci}%%2$s {@cm}disabled script(s) in {@ci}%%1$s{@cm}.")
+	change_name("skript command.enable.folder.error", "{@ce}✘ Encountered {@ci}%%2$s {@ce}error while parsing scripts in {@ci}%%1$s{@ce}!")
+	change_name("skript command.enable.folder.io error", "{@ce}⚠ Error while enabling scripts in {@ci}%%s{@ce}: {@ci}%%s")
+
+	change_name("skript command.disable.all.disabled", "{@ca}✔ Disabled all scripts.")
+	change_name("skript command.disable.all.io error", "{@ce}⚠ Could not rename one or more scripts: {@ci}%%s")
+
+	change_name("skript command.disable.single.already disabled", "{@ci}%%s{@cm} is already disabled!")
+	change_name("skript command.disable.single.disabled", "{@ca}✔ Disabled {@ci}%%s{@cm}.")
+	change_name("skript command.disable.single.io error", "{@ce}⚠ Could not rename {@ci}%%s{@ce}, it will re-enable on restart: {@ci}%%s")
+
+	change_name("skript command.disable.folder.empty", "{@ci}%%s{@cm} contains no enabled scripts.")
+	change_name("skript command.disable.folder.disabled", "{@ca}✔ Disabled {@ci}%%2$s {@cm}script(s) in {@ci}%%1$s{@cm}.")
+	change_name("skript command.disable.folder.io error", "{@ce}⚠ Could not disable scripts in {@ci}%%s{@ce}: {@ci}%%s")
+
+	change_name("skript log.runtime.error", "{@ce}✘ The script '{@ci}%%s{@ce}' encountered an error while running '{@ci}%%s{@ce}' {@ci}%%s{@ce}:")
+	change_name("skript log.runtime.errors skipped", "{@ca}⚠ %%d runtime error(s) skipped in frame. From: {@ci}%%s")
+	change_name("skript log.runtime.errors timed out", "{@ce}⚠ Line %%d of '{@ci}%%s{@ce}' produced too many errors (limit: {@ci}%%d{@ce}). No errors from this line for {@ci}%%d frames.")
+	change_name("skript log.runtime.error notification", "{@ce}⚠ Script '{@ci}%%s{@ce}' produced runtime errors. Check logs.")
+	change_name("skript log.runtime.error notification plural", "{@ce}⚠ Script '{@ci}%%s{@ce}' and {@ci}%%d others{@ce} produced runtime errors. Check logs.")

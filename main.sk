@@ -1,0 +1,112 @@
+on script load:
+	register_colors()
+	register_blocks()
+
+function register_colors():
+	register_color("black", "<##44363b>")
+	register_color("dark_gray", "<##646264>")
+	register_color("gray", "<##aea9b6>")
+	register_color("white", "<##fdf6ef>")
+	register_color("dark_red", "<#9A1616>")
+	register_color("red", "<#D22B2B>")
+	register_color("orange", "<#FBA82C>")
+	register_color("yellow", "<#FCE566>")
+	register_color("dark_green", "<#357A38>")
+	register_color("green", "<#81C784>")
+	register_color("dark_blue", "<#1E3F66>")
+	register_color("blue", "<#63A4FF>")
+	register_color("purple", "<#613659>")
+	register_color("pink", "<#ED87AA>")
+	register_color("brown", "<#9B6A3D>")
+	register_color("light_brown", "<#C9AD7F>")
+
+function register_color(id: string, color: string):
+	set {-color::%{_id}%} to {_color}
+
+function register_blocks():
+	register_block("coal_vein", "<#4B4B4B>Coal Vein", "%get_color("gray")%Common and steady,%nl%%get_color("gray")%the lifeblood of early %get_color("dark_gray")%mining%get_color("gray")%.", coal_ore, coal, 20, 1.0, 70, "none", "basic")
+	register_block("iron_bloom", "<#B87333>Iron Bloom", "%get_color("brown")%Blossoms of metal hidden in %get_color("gray")%stone,%nl%%get_color("gray")%waiting to be shaped by skilled %get_color("brown")%hands%get_color("gray")%.", iron_ore, raw_iron, 60, 1.05, 60, "small_xp", "metal")
+	register_block("copper_spike", "<#DA7B31>Copper Spike", "%get_color("orange")%Sharp spikes of copper %get_color("gray")%ore,%nl%%get_color("gray")%A miner's modest %get_color("orange")%treasure%get_color("gray")%.", copper_ore, raw_copper, 80, 1.1, 55, "none", "metal")
+	register_block("tuff_vein", "<#7A7A7A>Tuff Vein", "%get_color("gray")%Rough stone worn by time,%nl%%get_color("gray")%holding %get_color("gray")%secrets deep %get_color("gray")%within.", tuff, cobblestone, 90, 1.1, 50, "none", "stone")
+	register_block("honey_core", "<#FFC30B>Honey Core", "%get_color("yellow")%Sweet core trapped in amber,%nl%%get_color("yellow")%sticky with hidden power.", honey_block, honeycomb, 120, 1.15, 50, "sticky", "nature")
+	register_block("ghost_silk", "<#D6EAF8>Ghost Silk", "%get_color("light_blue")%Delicate and ethereal strands,%nl%%get_color("light_blue")%woven by unseen hands.", cobweb, string, 150, 1.15, 45, "slow_touch", "spooky")
+	register_block("prismarine_glow", "<#5ABAB5>Prismarine Glow", "%get_color("light_blue")%Glowing shards beneath the waves,%nl%%get_color("light_blue")%echoes of ocean’s secrets.", prismarine, prismarine_shard, 180, 1.2, 40, "aqua_burst", "ocean")
+	register_block("frostbite_ore", "<#99DDEE>Frostbite Ore", "%get_color("light_blue")%Frozen crystals sharp as ice,%nl%%get_color("light_blue")%chilling all who dare mine.", packed_ice, blue_ice, 220, 1.25, 35, "freeze_effect", "ice")
+	register_block("lava_spike", "<#E25822>Lava Spike", "%get_color("red")%Molten rock forged in flame,%nl%%get_color("red")%spiking through the nether depths.", basalt, blackstone, 250, 1.3, 35, "heat_wave", "nether")
+	register_block("storm_heart", "<#4682B4>Storm Heart", "%get_color("blue")%Beating with thunder’s pulse,%nl%%get_color("blue")%storm power trapped in ice.", blue_ice, packed_ice, 300, 1.3, 30, "shock_wave", "ice")
+	register_block("sunstone_ore", "<#FFD700>Sunstone Ore", "%get_color("yellow")%Shining bright like morning sun,%nl%%get_color("yellow")%radiates warmth and light.", glowstone, glowstone_dust, 350, 1.35, 30, "light_burst", "nether")
+	register_block("nether_spike", "<#C1440E>Nether Spike", "%get_color("red")%Sharp as the nether’s fury,%nl%%get_color("red")%guarded by blazing heat.", nether_quartz_ore, quartz, 400, 1.4, 30, "light_burst", "nether")
+	register_block("quartz_shard", "<#EDE6E3>Quartz Shard", "%get_color("light_gray")%Fragments of crystalline light,%nl%%get_color("light_gray")%pure and shining bright.", nether_quartz_ore, quartz, 450, 1.45, 25, "light_burst", "nether")
+	register_block("blackstone_spike", "<#2B2B2B>Blackstone Spike", "%get_color("gray")%Hard as night itself,%nl%%get_color("gray")%formed in nether’s shadow.", blackstone, blackstone, 500, 1.5, 25, "heat_wave", "nether")
+	register_block("molten_heart", "<#FF4500>Molten Heart", "%get_color("red")%Beating core of fiery magma,%nl%%get_color("red")%its warmth scorches all nearby.", resin_block, magma_cream, 600, 1.55, 20, "fire_burst", "nether")
+	register_block("glacial_shard", "<#ADD8E6>Glacial Shard", "%get_color("light_blue")%Fragments of ancient ice,%nl%%get_color("light_blue")%chilled to eternal stillness.", blue_ice, packed_ice, 700, 1.6, 20, "freeze_effect", "ice")
+	register_block("sky_crystal", "<#9370DB>Sky Crystal", "%get_color("purple")%Glimmers of sky and magic,%nl%%get_color("purple")%caught in fragile shards.", amethyst_cluster, amethyst_shard, 900, 1.7, 18, "sparkle", "gem")
+	register_block("phantom_essence", "<#B0C4DE>Phantom Essence", "%get_color("light_blue")%Whispers from forgotten realms,%nl%%get_color("light_blue")%captured in ghostly silk.", cobweb, string, 1100, 1.75, 15, "slow_touch", "spooky")
+	register_block("shadow_core", "<#301934>Shadow Core", "%get_color("purple")%Darkness condensed to a core,%nl%%get_color("purple")%power beyond mortal reach.", obsidian, obsidian, 1300, 1.8, 15, "dark_shield", "end")
+	register_block("titan_ore", "<#D4AF37>Titan Ore", "%get_color("yellow")%Mighty metal born from earth,%nl%%get_color("yellow")%strong as legends say.", iron_ore, raw_iron, 1500, 1.85, 12, "heavy_strike", "metal")
+	register_block("emerald_heart", "<#50C878>Emerald Heart", "%get_color("green")%Glowing with natural vitality,%nl%%get_color("green")%treasure of the deep forests.", emerald_ore, emerald, 2000, 1.9, 10, "burst_xp", "gem")
+	register_block("soul_ember", "<#8B0000>Soul Ember", "%get_color("red")%Burning with restless souls,%nl%%get_color("red")%its fire never fades.", soul_sand, soul_sand, 2500, 1.95, 8, "soul_burn", "nether")
+	register_block("crimson_bloom", "<#DC143C>Crimson Bloom", "%get_color("red")%Blooms of the crimson nether,%nl%%get_color("red")%power to fuel growth and decay.", crimson_nylium, crimson_fungus, 3000, 2.0, 5, "growth_boost", "nether")
+	register_block("ancient_rune", "<#654321>Ancient Rune", "%get_color("brown")%Symbols carved in time’s depths,%nl%%get_color("brown")%whispers of lost power.", ancient_debris, netherite_scrap, 5000, 2.1, 5, "relic_power", "metal")
+	register_block("ember_vein", "<#FF6F3C>Ember Vein", "%get_color("orange")%Veins of molten fury pulse beneath the surface,%nl%%get_color("orange")%mining it ignites bursts of flame.", magma_block, magma_cream, 5500, 2.15, 3, "fire_burst", "nether")
+
+
+
+function get_color(id: string) :: string:
+	return {-color::%{_id}%}
+
+###
+[<COLOR_BLOCKNAME>Block Name</COLOR_BLOCKNAME>]
+Type: <COLOR_FIELD>block_type</COLOR_FIELD>   Item: <COLOR_FIELD>item_type</COLOR_FIELD>   Rarity: <COLOR_RARITY>rarity</COLOR_RARITY> (weight: <COLOR_VALUE>weight</COLOR_VALUE>)
+
+Value: <COLOR_VALUE>value coins</COLOR_VALUE>
+Multiplier: <COLOR_VALUE>xmultiplier</COLOR_VALUE>
+
+Effect: <COLOR_EFFECT>effect</COLOR_EFFECT>
+Category: <COLOR_CATEGORY>category</COLOR_CATEGORY>
+###
+
+
+struct block:
+	name: string
+	description: string
+	block: itemtype
+	item: itemtype 
+	base_value: number
+	combo_multiplier: number
+	weight: number
+	effect: function
+	chain_type: string 
+
+function register_block(id: string, name: string, description: string, block: itemtype, item: itemtype, base_value: number, combo_multiplier: number, weight: number, effect: string, chain_type: string):
+	set {-blocks::%{_id}%} to a block struct:
+		name: {_name}
+		description: {_description}
+		block: {_block}
+		item: {_item}
+		base_value: {_base_value}
+		combo_multiplier: {_combo_multiplier}
+		weight: {_weight}
+		effect: fn({_effect})
+		chain_type: {_chain_type}
+
+function get_block(id: string) :: item:
+	set {_block} to {-blocks::%{_id}%}
+	set {_item} to {_block}->block
+	set name of {_item} to {_block}->name
+	set lore of {_item} to {_block}->description
+	broadcast "%{_item}%"
+	set (string tag "id" of custom nbt of {_item}) to "%{_id}%"
+	return {_item}
+
+command /get_block [<id: string>]:
+	permission: op
+	trigger:
+		if {_id} is not set:
+			loop indexes of {-blocks::*}:
+				give get_block(loop-value) to player
+			stop
+		give get_block({_id}) to player
+
+on tab complete of "get_block":
+	set tab completions of position 1 to indexes of {-blocks::*}
