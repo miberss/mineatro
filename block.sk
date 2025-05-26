@@ -1,0 +1,20 @@
+function get_block(id: string) :: item:
+	set {_block} to {-blocks::%{_id}%}
+	set {_item} to {_block}->block
+	set name of {_item} to {_block}->name
+	set lore of {_item} to {_block}->description
+	broadcast "%{_item}%"
+	set (string tag "id" of custom nbt of {_item}) to "%{_id}%"
+	return {_item}
+
+command /get_block [<id: string>]:
+	permission: op
+	trigger:
+		if {_id} is not set:
+			loop indexes of {-blocks::*}:
+				give get_block(loop-value) to player
+			stop
+		give get_block({_id}) to player
+
+on tab complete of "get_block":
+	set tab completions of position 1 to indexes of {-blocks::*}

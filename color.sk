@@ -1,0 +1,26 @@
+on script load:
+	register_colors()
+
+function register_colors():
+	register_color("black", "<##44363b>")
+	register_color("dark_gray", "<##646264>")
+	register_color("gray", "<##aea9b6>")
+	register_color("white", "<##fdf6ef>")
+	register_color("dark_red", "<#9A1616>")
+	register_color("red", "<#D22B2B>")
+	register_color("orange", "<#FBA82C>")
+	register_color("yellow", "<#FCE566>")
+	register_color("dark_green", "<#357A38>")
+	register_color("green", "<#81C784>")
+	register_color("dark_blue", "<#1E3F66>")
+	register_color("blue", "<#63A4FF>")
+	register_color("purple", "<#613659>")
+	register_color("pink", "<#ED87AA>")
+	register_color("brown", "<#9B6A3D>")
+	register_color("light_brown", "<#C9AD7F>")
+
+function register_color(id: string, color: string):
+	set {-color::%{_id}%} to {_color}
+
+function get_color(id: string) :: string:
+	return {-color::%{_id}%}

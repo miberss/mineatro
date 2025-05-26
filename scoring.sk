@@ -1,0 +1,8 @@
+on script load:
+	define_sound("hit", "block.copper.hit", 0.7, 1.5)
+	define_sound("bass", "block.note_block.bass", 0.5, 0.7)
+	define_sound("midtone", "block.copper.hit", 1, 1.5)
+
+function animate_score_increase(old: number, new: number):
+	set {_ratio} to {_new} / max({_old}, 1)
+
